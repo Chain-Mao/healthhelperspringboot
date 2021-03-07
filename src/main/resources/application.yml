@@ -1,0 +1,8 @@
+#开发环境配置文件
+spring:
+  profiles:
+    active: dev
+
+jdbc:
+  url: http://localhost:3306
+
