@@ -14,7 +14,8 @@ public enum ResponseCode {
     USERNAME_EXISTS(10,"用户名存在"),
     EMAIL_EXISTS(11,"邮箱存在"),
     REGISTER_FAIL(12,"注册失败"),
-
+    NEED_LOGIN(13,"未登录"),
+    USERINFO_UPDATE_FAIL(14,"用户信息修改失败"),
     ;
     //定义枚举类型，只能取枚举中规定的值
     private int code;

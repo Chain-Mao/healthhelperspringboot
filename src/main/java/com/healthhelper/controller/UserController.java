@@ -1,9 +1,11 @@
 package com.healthhelper.controller;
 
 import com.healthhelper.common.Const;
+import com.healthhelper.common.ResponseCode;
 import com.healthhelper.pojo.User;
 import com.healthhelper.server.IUserService;
 import com.healthhelper.utils.ServerResponse;
+import com.healthhelper.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,5 +56,25 @@ public class UserController {
     public ServerResponse register(User user){
         return userService.registerLogic(user);
     }
+
+    @RequestMapping("user/update.do")
+    public ServerResponse updateUser(User user,HttpSession session){
+        //判断用户是否登录
+        UserVO userInfo = (UserVO)session.getAttribute(Const.CURRENT_USER);
+        //已经有拦截器，不再需要
+/*        if(userInfo == null){
+            return  ServerResponse.createServerResponseByFail(ResponseCode.NEED_LOGIN.getCode(),ResponseCode.NEED_LOGIN.getMsg());
+        }
+        if(user == null){
+            return ServerResponse.createServerResponseByFail(ResponseCode.PARAMENT_NOT_EMPTY.getCode(),ResponseCode.PARAMENT_NOT_EMPTY.getMsg());
+        }*/
+        user.setId(userInfo.getId());
+        ServerResponse serverResponse = userService.updateUserLogic(user);
+        if(serverResponse.isSuccess()){//更新session中的用户信息
+            session.setAttribute(Const.CURRENT_USER,serverResponse.getData());
+        }
+        return serverResponse;
+    }
 }
+
 

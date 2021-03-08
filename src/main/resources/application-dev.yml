@@ -11,9 +11,11 @@ spring:
       min-idle: 1
       test-on-borrow: true
       test-on-return: true
+    thymeleaf:
+      mode:HTML5
 mybatis:
   mapper-locations: classpath*:com/healthhelper/mapper/*Mapper.xml
   config-location: classpath:mybatis-config.xml
 
-
-
+business:
+  host: http://img.healthhelper.com/
