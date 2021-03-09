@@ -38,7 +38,5 @@ public enum ResponseCode {
         return msg;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
+    public void setMsg(String msg) { this.msg = msg; }
 }
